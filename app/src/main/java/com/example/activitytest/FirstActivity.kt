@@ -26,9 +26,12 @@ class FirstActivity : AppCompatActivity() {
         binding.button1.setOnClickListener({
             Toast.makeText(this, "You clicked Button 1", Toast.LENGTH_SHORT).show()
 
+            //intent组件实现不同activity之间跳转，被注释掉的是显式用法，下面的是隐式用法
 //            val intent = Intent(this, SecondActivity::class.java)
-            val intent = Intent("com.example.activitytest.ACTION_START")
-            startActivity(intent)
+//            val intent = Intent("com.example.activitytest.ACTION_START")
+//            intent.addCategory("com.example.activitytest.MY_CATEGORY")
+//            startActivity(intent)
+//            val intent = Intent
         })
     }
 
