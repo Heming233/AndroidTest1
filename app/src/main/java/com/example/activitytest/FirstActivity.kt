@@ -1,6 +1,7 @@
 package com.example.activitytest
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -26,14 +27,42 @@ class FirstActivity : AppCompatActivity() {
         binding.button1.setOnClickListener({
             Toast.makeText(this, "You clicked Button 1", Toast.LENGTH_SHORT).show()
 
-            //intent组件实现不同activity之间跳转，被注释掉的是显式用法，下面的是隐式用法
+            //intent组件实现不同组件之间交互，包括指明当前组件想要执行的动作，还可以在不同组件之间传递数据
+            //intent显式用法
+            //SecondActivity::class.java等于Java里的SecondActivity.class
 //            val intent = Intent(this, SecondActivity::class.java)
+
+            //intent隐式用法
 //            val intent = Intent("com.example.activitytest.ACTION_START")
 //            intent.addCategory("com.example.activitytest.MY_CATEGORY")
 //            startActivity(intent)
 //            val intent = Intent
+
+            //使用隐式intent启动浏览器打开百度
+            //Intent.ACTION_VIEW是Android内置的动作
+//            val intent = Intent(Intent.ACTION_VIEW)
+//            intent.data = Uri.parse("https://www.baidu.com")
+//            startActivity(intent)
+
+            //使用隐式intent拨打电话
+//            val intent = Intent(Intent.ACTION_DIAL)
+//            intent.data = Uri.parse("tel:10086")
+//            startActivity(intent)
+
+            //intent传递数据
+//            val data = "Hello SecondActivity, I'm FirstActivity!"
+//            val intent = Intent(this, SecondActivity::class.java)
+//            intent.putExtra("extra_data", data)
+//            startActivity(intent)
+
+            //接收其他activity返回的数据
+            val intent = Intent(this, SecondActivity::class.java)
+            //startActivityForResult已被弃用
+//           startActivityForResult(intent, 1)
         })
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         //创建一个menuInflater对象，并且赋值
