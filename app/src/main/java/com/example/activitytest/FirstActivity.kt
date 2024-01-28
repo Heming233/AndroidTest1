@@ -8,11 +8,20 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.activitytest.databinding.FirstLayoutBinding
 
 class FirstActivity : AppCompatActivity() {
 
     private lateinit var binding: FirstLayoutBinding
+
+    //使用registerForActivityResult来注册一个变量用于监听Activity
+    private val requestDataLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){
+        result -> if(result.resultCode == RESULT_OK){
+            val data = result.data?.getStringExtra("data")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +65,13 @@ class FirstActivity : AppCompatActivity() {
 //            startActivity(intent)
 
             //接收其他activity返回的数据
-            val intent = Intent(this, SecondActivity::class.java)
             //startActivityForResult已被弃用
 //           startActivityForResult(intent, 1)
+            //使用Activity Result API来代替startActivityResult()
+            val intent = Intent(this, SecondActivity::class.java)
+            requestDataLauncher.launch(intent)
         })
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
