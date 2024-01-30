@@ -13,8 +13,8 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.second_layout)
 
         //接收FirstActivity传递的数据并打印
-        val extraData = intent.getStringExtra("extra_data")
-        Log.d("SecondActivity", "extra data is $extraData")
+//        val extraData = intent.getStringExtra("data")
+//        Log.d("SecondActivity", "extra data is $extraData")
 
         //使用ViewBinding调用组件
         val binding = SecondLayoutBinding.inflate(layoutInflater)
@@ -23,6 +23,8 @@ class SecondActivity : AppCompatActivity() {
             val intent = Intent()
             intent.putExtra("data", "data from SecondActivity")
             setResult(RESULT_OK, intent)
+
+            //销毁activity
             finish()
         })
     }
