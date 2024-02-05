@@ -15,6 +15,7 @@
         android:enableOnBackInvokedCallback="false">
         <activity
             android:name=".ThirdActivity"
+            android:label="This is ThirdActivity"
             android:exported="true" >
             <intent-filter tools:ignore = "AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW"/>
@@ -24,7 +25,9 @@
         </activity>
         <activity
             android:name=".SecondActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:label="This is SecondActivity">
             <intent-filter>
 
                 <!-- 下面一行表示当前activity可以响应com.example.activitytest.ACTION_START这个action -->
@@ -37,7 +40,8 @@
         <activity
             android:name=".FirstActivity"
             android:exported="true"
-            android:label="This is the FirstActivity">
+            android:label="This is the FirstActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

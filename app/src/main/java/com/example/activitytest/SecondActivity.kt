@@ -7,9 +7,10 @@ import android.util.Log
 import android.window.OnBackInvokedDispatcher
 import com.example.activitytest.databinding.SecondLayoutBinding
 
-class SecondActivity : AppCompatActivity() {
+class SecondActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("SecondActivity", "Task is $taskId")
         setContentView(R.layout.second_layout)
 
         //接收FirstActivity传递的数据并打印
@@ -20,13 +21,18 @@ class SecondActivity : AppCompatActivity() {
         val binding = SecondLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.button2.setOnClickListener({
-            val intent = Intent()
-            intent.putExtra("data", "data from SecondActivity")
-            setResult(RESULT_OK, intent)
+//            val intent = Intent()
+//            intent.putExtra("data", "data from SecondActivity")
+//            setResult(RESULT_OK, intent)
+//
+//            //销毁activity
+//            finish()
 
-            //销毁activity
-            finish()
+            //启动FirstActivity，standard模式
+            val intent = Intent(this, ThirdActivity::class.java)
+            startActivity(intent)
         })
+
     }
 
     //重写onBackPressed方法，应对用户直接按返回键返回上一个activity

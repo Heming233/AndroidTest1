@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -11,7 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.activitytest.databinding.FirstLayoutBinding
 
-class FirstActivity : AppCompatActivity() {
+class FirstActivity : BaseActivity() {
 
     private lateinit var binding: FirstLayoutBinding
 
@@ -25,6 +26,7 @@ class FirstActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("FirstActivity", "Task id is $taskId")
         setContentView(R.layout.first_layout)
 //        val button1 : Button = findViewById(R.id.button1)
 //        button1.setOnClickListener({
@@ -68,8 +70,12 @@ class FirstActivity : AppCompatActivity() {
             //startActivityForResult已被弃用
 //           startActivityForResult(intent, 1)
             //使用Activity Result API来代替startActivityResult()
+//            val intent = Intent(this, SecondActivity::class.java)
+//            requestDataLauncher.launch(intent)
+
+            //标准启动activity
             val intent = Intent(this, SecondActivity::class.java)
-            requestDataLauncher.launch(intent)
+            startActivity(intent)
         })
     }
 
