@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.activitytest.databinding.FirstLayoutBinding
+import java.lang.Thread.sleep
 
 class FirstActivity : BaseActivity() {
 
@@ -32,10 +33,11 @@ class FirstActivity : BaseActivity() {
 //        button1.setOnClickListener({
 //            Toast.makeText(this, "You clicked Button 1", Toast.LENGTH_SHORT).show()
 //        })
+
         //Toast是一个消息通知方法，一段时间后小时，不占用屏幕空间
         binding = FirstLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.button1.setOnClickListener({
+        binding.button1.setOnClickListener{
             Toast.makeText(this, "You clicked Button 1", Toast.LENGTH_SHORT).show()
 
             //intent组件实现不同组件之间交互，包括指明当前组件想要执行的动作，还可以在不同组件之间传递数据
@@ -56,9 +58,13 @@ class FirstActivity : BaseActivity() {
 //            startActivity(intent)
 
             //使用隐式intent拨打电话
-//            val intent = Intent(Intent.ACTION_DIAL)
-//            intent.data = Uri.parse("tel:10086")
-//            startActivity(intent)
+            sleep(5000)
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:10086")
+//            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            Log.d("IntentLog", "$intent")
+            startActivity(intent)
 
             //intent传递数据
 //            val data = "Hello SecondActivity, I'm FirstActivity!"
@@ -74,9 +80,11 @@ class FirstActivity : BaseActivity() {
 //            requestDataLauncher.launch(intent)
 
             //标准启动activity
-            val intent = Intent(this, SecondActivity::class.java)
-            startActivity(intent)
-        })
+//            val intent = Intent(this, SecondActivity::class.java)
+//            startActivity(intent)
+
+//            SecondActivity.actionStart(this, "data1", "data2")
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.activitytest
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -42,5 +43,14 @@ class SecondActivity : BaseActivity() {
         intent.putExtra("data_return", "Hello FirstActivity")
         setResult(RESULT_OK, intent)
         return super.getOnBackInvokedDispatcher()
+    }
+
+    companion object{
+        fun actionStart(context : Context, data1 : String, data2 : String) {
+            val intent = Intent(context, SecondActivity::class.java)
+            intent.putExtra("param1", data1)
+            intent.putExtra("param2", data2)
+            context.startActivity(intent)
+        }
     }
 }
